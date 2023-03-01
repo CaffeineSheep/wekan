@@ -6,6 +6,7 @@ let disableRegistration = false;
 let disableForgotPassword = false;
 let passwordLoginDisabled = false;
 let oidcRedirectionEnabled = false;
+let logoutRedirectUrl = null;
 let oauthServerUrl = "home";
 let oauthDashboardUrl = "";
 
@@ -33,6 +34,12 @@ Meteor.call('getOauthServerUrl', (_, result) => {
 Meteor.call('getOauthDashboardUrl', (_, result) => {
   if (result) {
     oauthDashboardUrl = result;
+  }
+});
+
+Meteor.call('getServiceLogoutRedirect', (_, result) => {
+  if (result) {
+    logoutRedirectUrl = result;
   }
 });
 
@@ -81,8 +88,16 @@ AccountsTemplates.configure({
   showForgotPasswordLink: !disableForgotPassword,
   forbidClientAccountCreation: disableRegistration,
   onLogoutHook() {
-    // here comeslogic for redirect
-    if(oidcRedirectionEnabled)
+    // here comes logic for redirect
+    const originService = FlowRouter.getQueryParam("origin_service");
+
+    if (originService === 'symbolpedia') { // Symbolpedia is already logged out, so we just need to logout of the SSO service
+      window.location = `${oauthServerUrl}/realms/symbolpedia/protocol/openid-connect/logout`
+    }
+    else if (logoutRedirectUrl) { // Head to Symbolpedia logout page
+      window.location = logoutRedirectUrl;
+    }
+    else if(oidcRedirectionEnabled)
     {
       window.location = oauthServerUrl + oauthDashboardUrl;
     }

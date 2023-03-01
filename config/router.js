@@ -55,6 +55,13 @@ FlowRouter.route('/public', {
   },
 });
 
+FlowRouter.route('/logout', {
+  name: 'logout',
+  action() {
+    AccountsTemplates.logout();
+  },
+});
+
 FlowRouter.route('/b/:id/:slug', {
   name: 'board',
   action(params) {

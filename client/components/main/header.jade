@@ -10,6 +10,13 @@ template(name="header")
         span
           a(href="{{pathFor 'home'}}")
             span.fa.fa-home
+
+        ul.external-link
+          a(href="{{ wikiLink }}")
+            span
+              | Symbolpedia
+            span.fa.fa-arrow-right
+
         ul.header-quick-access-list
           if currentList
             each currentBoard.lists
@@ -48,7 +55,14 @@ template(name="header")
         span.allBoards
           a(href="{{pathFor 'home'}}")
             span.fa.fa-home
-            | {{_ 'all-boards'}}
+            | Home
+            //- | {{_ 'all-boards'}}
+        span.allBoards
+          //- a(href="{{ process.env.SYMBOLPEDIA_URL }}")
+          a(href="{{ wikiLink }}")
+            //- span.fa.fa-wikipedia-w
+            | Go To Symbolpedia
+            span.fa.fa-arrow-right
         ul.header-quick-access-list
           //li
           //  a(href="{{pathFor 'public'}}")

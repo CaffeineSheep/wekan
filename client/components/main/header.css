@@ -227,6 +227,23 @@
     width: 100%;
     z-index: 30;
   }
+
+  #header-quick-access .external-link {
+    margin-left: 3px;
+    white-space: nowrap;
+    font-size: 20px;
+  }
+
+  /* #header-quick-access .external-link span:first-child {
+  } */
+  #header-quick-access .external-link .fa-arrow-right {
+    font-size: 20px;
+    margin-top: 1px;
+    margin-right: 10px;
+    margin-left: 3px;
+  }
+
+
   #header-quick-access ul {
     width: calc(100% - 60px);
     margin-right: 10px;

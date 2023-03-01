@@ -513,6 +513,9 @@ if (Meteor.isServer) {
       };
     },
 
+    getSymbolpediaURL(){
+      return process.env.SYMBOLPEDIA_URL;
+    },
     getOauthServerUrl(){
       return process.env.OAUTH2_SERVER_URL;
     },
@@ -522,9 +525,11 @@ if (Meteor.isServer) {
     getDefaultAuthenticationMethod() {
       return process.env.DEFAULT_AUTHENTICATION_METHOD;
     },
-
     isPasswordLoginDisabled() {
       return process.env.PASSWORD_LOGIN_ENABLED === 'false';
+    },
+    getServiceLogoutRedirect() {
+      return process.env.SYMBOLPEDIA_URL + '/logout';
     },
     isOidcRedirectionEnabled(){
       return process.env.OIDC_REDIRECTION_ENABLED === 'true' && Object.keys(loadOidcConfig("oidc")).length > 0;

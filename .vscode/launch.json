@@ -1,45 +1,67 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-      {
-          "type": "chrome",
-          "request": "launch",
-          "name": "Meteor: Chrome",
-          "url": "http://localhost:3000",
-          "webRoot": "${workspaceFolder}"
-      },
-      {
-          "type": "node",
-          "request": "launch",
-          "name": "Meteor: Node",
-          "runtimeExecutable": "/home/wekan/.meteor/meteor",
-          "runtimeArgs": ["run", "--inspect-brk=9229"],
-          "outputCapture": "std",
-          "port": 9229,
-          "timeout": 60000
-      },
-      {
-          "type": "node",
-          "request": "launch",
-          "name": "Test: Node",
-          "runtimeExecutable": "meteor",
-          "runtimeArgs": [
-            "test",
-            "--inspect-brk=9229",
-            "--port=4040",
-            "--exclude-archs=web.browser.legacy,web.cordova",
-            "--driver-package=meteortesting:mocha",
-            "--settings=settings.json"
-          ],
-          "outputCapture": "std",
-          "port": 9229,
-          "timeout": 60000
-      }
-  ],
-  "compounds": [
-      {
-          "name": "Meteor: All",
-          "configurations": ["Meteor: Node", "Meteor: Chrome"]
-      }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Chrome Debug",
+            "url": "http://localhost:4000",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Backend",
+            "runtimeExecutable": "${userHome}/.meteor/meteor",
+            "envFile": "${workspaceFolder}/.dev.env",
+            "runtimeArgs": [
+                "run",
+                "--inspect-brk=9229", // I think --inspect-brk can work with no equals, which defaults to a port of 5858. But wekan had it setup as 9229, so I guess I'll leave it as it is
+                "--port=4000" // Meteor defaults to port 3000
+            ],
+            "outputCapture": "std",
+            "port": 9229,
+            "timeout": 60000
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start Backend Without Debugging", // Can just run the start-wekan-dev.sh script from the command line instead
+            "runtimeExecutable": "${userHome}/.meteor/meteor",
+            "envFile": "${workspaceFolder}/.dev.env",
+            "runtimeArgs": [
+                "run",
+                "--port=4000"
+            ],
+            "outputCapture": "std",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test: Node",
+            "runtimeExecutable": "meteor",
+            "runtimeArgs": [
+                "test",
+                "--inspect-brk=9229",
+                "--port=4040",
+                "--exclude-archs=web.browser.legacy,web.cordova",
+                "--driver-package=meteortesting:mocha",
+                "--settings=settings.json"
+            ],
+            "outputCapture": "std",
+            "port": 9229,
+            "timeout": 60000
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Start Debugging",
+            "description": "Can Take a while to start up backend (1 min+). Chrome may need to be refreshed after backend is ready.",
+            "configurations": [
+                "Backend",
+                "Chrome Debug",
+
+            ]
+        }
+    ]
 }

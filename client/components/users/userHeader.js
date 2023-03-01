@@ -57,7 +57,10 @@ Template.memberMenuPopup.helpers({
     } else {
       return true;
     }
-  }
+  },
+  wikiLink() {
+    return Meteor.settings.public.SYMBOLPEDIA_URL ?? '/';
+  },
 });
 
 Template.memberMenuPopup.events({

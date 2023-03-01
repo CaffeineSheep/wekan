@@ -77,6 +77,11 @@ template(name="memberMenuPopup")
         a.js-change-language
           i.fa.fa-flag
           | {{_ 'changeLanguagePopup-title'}}
+      hr
+      li
+        a(href="{{ wikiLink }}")
+          i.fa.fa-arrow-right
+          | To Symbolpedia
   unless isSandstorm
     hr
     ul.pop-over-list

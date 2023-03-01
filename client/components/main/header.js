@@ -41,6 +41,10 @@ Template.header.helpers({
     return announcements && announcements.enabled;
   },
 
+  wikiLink() {
+    return Meteor.settings.public.SYMBOLPEDIA_URL ?? '/';
+  },
+
   announcement() {
     $('.announcement').show();
     const announcements = Announcements.findOne();

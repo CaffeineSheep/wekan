@@ -1,0 +1,11 @@
+[Unit]
+After=mongod.service
+Description=Wekan Service
+
+[Service]
+ExecStart=/bin/bash -c 'source /etc/environment && cd $WEKAN_HOME && ./start-wekan.sh'
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target
