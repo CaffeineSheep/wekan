@@ -99,6 +99,7 @@
   display: flex;
   z-index: 1000;
   padding: 10px 0px;
+  padding-left: 10px;
 }
 #header-quick-access .allBoards {
   font-size: 14px;
@@ -226,6 +227,7 @@
     transition: background-color 0.4s;
     width: 100%;
     z-index: 30;
+    padding-left: 0;
   }
 
   #header-quick-access .external-link {
