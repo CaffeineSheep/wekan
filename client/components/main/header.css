@@ -1,7 +1,9 @@
 #header {
   color: #fff;
   transition: background-color 0.4s;
-  background: #2980b9;
+  /* background: #2980b9; */
+  /* background: #4f8a36; */
+  background: #599c3d;
   z-index: 17;
 }
 #header #header-main-bar {
@@ -93,7 +95,10 @@
 #header-quick-access {
   color: #fff;
   transition: background-color 0.4s;
-  background: #2573a7;
+  /* background: #2ca725; */
+  /* background: #8E44AD; */
+  /* background: #599c3d; */
+  background: #63ad44;
   height: 28px;
   font-size: 12px;
   display: flex;
