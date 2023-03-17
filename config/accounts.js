@@ -92,7 +92,7 @@ AccountsTemplates.configure({
     const originService = FlowRouter.getQueryParam("origin_service");
 
     if (originService === 'symbolpedia') { // Symbolpedia is already logged out, so we just need to logout of the SSO service
-      window.location = `${oauthServerUrl}/realms/symbolpedia/protocol/openid-connect/logout`
+      window.location = `${oauthServerUrl}/realms/symbolpedia/protocol/openid-connect/logout?redirect_uri=${encodeURI(Meteor.settings.public.SYMBOLPEDIA_URL ?? '/')}`
     }
     else if (logoutRedirectUrl) { // Head to Symbolpedia logout page
       window.location = logoutRedirectUrl;
